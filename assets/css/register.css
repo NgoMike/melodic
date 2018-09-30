@@ -6,7 +6,7 @@ html, body {
 
 #background {
   background-color: black;
-  background-image: url(../images/bg.jpg);
+  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../images/bg.jpg);
   background-position: center;
   background-size: cover;
   display: table;
@@ -62,6 +62,7 @@ html, body {
   text-align: center;
   font-weight: 900;
   color: lime;
+  z-index: 100;
 }
 
 #inputContainer input[type="text"],

@@ -1,26 +1,23 @@
-<?php
-  include("includes/config.php");
+<?php include("includes/header.php") ?>
 
-  // session_destroy(); // logs out manually
+  <h1 class="pageHeadingBig">You Might Also Like</h1>
 
-  if (isset($_SESSION['userLoggedIn'])) {
-    $userLoggedIn = $_SESSION['userLoggedIn'];
-  } else {
-    header("Location: register.php");
-  }
-?>
+  <div class="gridViewContainer">
+    <?php
+        $albumQuery = mysqli_query($con, "SELECT * FROM albums ORDER BY RAND() LIMIT 10");
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Melodic</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
-</head>
-<body>
-  <h1>Hello!</h1>
-</body>
-</html>
+        while($row = mysqli_fetch_array($albumQuery)) {
+          echo 
+            "<div class='gridViewItem'>
+              <a href='album.php?id=" . $row['id'] . "'>
+                <img src='". $row['artworkPath'] . "'>
+                <div class='gridViewInfo'>"
+                  . $row['title'] .
+                "</div>
+              </a>
+            </div>";
+        }
+    ?>
+  </div>
+
+<?php include("includes/footer.php") ?>
